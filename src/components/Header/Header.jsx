@@ -6,15 +6,17 @@ import { Link, useNavigate } from "react-router-dom";
 function Header() {
 	const navigate = useNavigate();
 
-	const onClickLogoHandler = () => {
-		navigate("/");
+	const onClickNavHandler = (path) => {
+		navigate(path);
 	};
 	return (
 		<div css={s.header}>
-			<div onClick={onClickLogoHandler}>BOARD</div>
+			<div onClick={() => onClickNavHandler("/")}>BOARD</div>
 			<div>
 				<ul>
-					<li>게시판</li>
+					<li>
+						<Link to={"/board"}>게시판</Link>
+					</li>
 					<li>
 						<Link to={"/write"}>글쓰기</Link>
 					</li>
@@ -22,10 +24,16 @@ function Header() {
 			</div>
 			<div>
 				<ul>
-					<li css={s.headerIcon}>
+					<li
+						css={s.headerIcon}
+						onClick={() => onClickNavHandler("/auth/signin")}
+					>
 						<LuLogIn />
 					</li>
-					<li css={s.headerIcon}>
+					<li
+						css={s.headerIcon}
+						onClick={() => onClickNavHandler("/auth/signup")}
+					>
 						<LuUserRoundPlus />
 					</li>
 				</ul>

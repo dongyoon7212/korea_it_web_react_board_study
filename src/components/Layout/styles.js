@@ -11,7 +11,4 @@ export const layout = css`
 export const mainContainer = css`
 	width: 60%;
 	height: calc(100vh - 60px);
-	border-right: 1px solid #dbdbdb;
-	border-left: 1px solid #dbdbdb;
-	box-sizing: border-box;
 `;
