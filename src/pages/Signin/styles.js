@@ -28,23 +28,13 @@ export const signinBtnBox = css`
 	& > button {
 		flex: 1;
 		padding: 12px 0;
+		border: none;
 		border-radius: 8px;
 		font-size: 15px;
 		font-weight: 600;
 		cursor: pointer;
-		transition: all 0.2s ease;
-	}
-
-	.signup {
-		background-color: #fff;
-		border: 1px solid #ced4da;
-		color: #333;
-	}
-
-	.signin {
-		background-color: #0d6efd;
-		border: none;
 		color: white;
+		transition: all 0.2s ease;
 	}
 
 	& > button:hover {
