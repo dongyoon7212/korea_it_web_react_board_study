@@ -47,3 +47,14 @@ export const btnBox = css`
 		}
 	}
 `;
+
+export const errorBox = css`
+	padding-left: 20px;
+	& > ul {
+		list-style: disc;
+		& > li {
+			color: #dc3545;
+			font-size: 13px;
+		}
+	}
+`;
