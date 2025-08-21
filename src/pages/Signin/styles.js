@@ -13,30 +13,72 @@ export const container = css`
 
 export const box = css`
 	width: 400px;
-	height: 450px;
-	border: 1px solid #dbdbdb;
+	height: auto;
+	/* border: 1px solid #dbdbdb; */
 	border-radius: 15px;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 20px;
 	padding: 30px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
 `;
 
 export const inputBox = css`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+`;
+
+export const signinBtnBox = css`
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 10px;
+
+	& > button {
+		cursor: pointer;
+		width: 100%;
+		padding: 10px 30px;
+		border: none;
+		border-radius: 8px;
+		font-size: 14px;
+		font-weight: 500;
+		color: white;
+		transition: all 0.1s ease;
+
+		&:hover {
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+		}
+	}
+`;
+
+export const oauthBtnBox = css`
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
 
-	& > input {
-		outline: none;
-		border: 1px solid #dbdbdb;
+	& > button {
+		cursor: pointer;
+		width: 100%;
+		padding: 10px 30px;
+		border: none;
 		border-radius: 8px;
-		padding: 10px 15px;
-		font-size: 16px;
-		color: #333;
-		box-sizing: border-box;
+		font-size: 14px;
+		font-weight: 500;
+		color: white;
+		transition: all 0.1s ease;
+
+		&:hover {
+			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+		}
 	}
 `;
