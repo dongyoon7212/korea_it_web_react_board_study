@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { FcGoogle } from "react-icons/fc";
 import AuthInput from "../../components/AuthInput/AuthInput";
 import * as s from "./styles";
+import { SiNaver } from "react-icons/si";
+import { RiKakaoTalkFill } from "react-icons/ri";
 
 function Signin() {
 	return (
@@ -20,16 +23,17 @@ function Signin() {
 					</button>
 				</div>
 				<div css={s.oauthBtnBox}>
-					<button style={{ backgroundColor: "rgb(234,067,053)" }}>
-						구글로 로그인
+					<button className="google">
+						<FcGoogle size={20} />
+						<span>구글로 로그인</span>
 					</button>
-					<button style={{ backgroundColor: "#03c75a" }}>
-						네이버로 로그인
+					<button className="naver">
+						<SiNaver size={18} color="#03C75A" />
+						<span>네이버로 로그인</span>
 					</button>
-					<button
-						style={{ backgroundColor: "#fee500", color: "#333" }}
-					>
-						카카오로 로그인
+					<button className="kakao">
+						<RiKakaoTalkFill size={20} color="#FEE500" />
+						<span>카카오로 로그인</span>
 					</button>
 				</div>
 			</div>

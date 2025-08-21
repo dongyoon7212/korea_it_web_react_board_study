@@ -1,84 +1,83 @@
 import { css } from "@emotion/react";
 
 export const container = css`
-	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: flex-start;
-	padding: 60px 0;
-	box-sizing: border-box;
+	justify-content: center;
+	padding: 40px;
 `;
 
 export const box = css`
-	width: 400px;
-	height: auto;
-	/* border: 1px solid #dbdbdb; */
-	border-radius: 15px;
-	box-sizing: border-box;
+	width: 360px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: 20px;
-	padding: 30px;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
 `;
 
 export const inputBox = css`
-	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 10px;
+	gap: 12px;
 `;
 
 export const signinBtnBox = css`
-	width: 100%;
 	display: flex;
-	justify-content: space-around;
-	align-items: center;
 	gap: 10px;
 
 	& > button {
-		cursor: pointer;
-		width: 100%;
-		padding: 10px 30px;
-		border: none;
+		flex: 1;
+		padding: 12px 0;
 		border-radius: 8px;
-		font-size: 14px;
-		font-weight: 500;
-		color: white;
-		transition: all 0.1s ease;
+		font-size: 15px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
 
-		&:hover {
-			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
-		}
+	.signup {
+		background-color: #fff;
+		border: 1px solid #ced4da;
+		color: #333;
+	}
+
+	.signin {
+		background-color: #0d6efd;
+		border: none;
+		color: white;
+	}
+
+	& > button:hover {
+		opacity: 0.9;
 	}
 `;
 
 export const oauthBtnBox = css`
-	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 	gap: 10px;
 
 	& > button {
-		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px; /* 아이콘-텍스트 간격 */
 		width: 100%;
-		padding: 10px 30px;
-		border: none;
+		padding: 12px;
+		border: 1px solid #e0e0e0;
 		border-radius: 8px;
+		background-color: #fff;
 		font-size: 14px;
 		font-weight: 500;
-		color: white;
-		transition: all 0.1s ease;
+		color: #333;
+		cursor: pointer;
+
+		/* ✅ background → background-color 로 변경 */
+		transition: background-color 0.2s ease, color 0.2s ease;
 
 		&:hover {
-			box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+			background-color: #f8f9fa;
+			color: #000;
 		}
 	}
 `;
