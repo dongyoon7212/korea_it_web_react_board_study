@@ -6,6 +6,7 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AuthInput from "../../components/AuthInput/AuthInput";
+import { signinRequest } from "../../apis/auth/authApis";
 
 function Signin() {
 	const [username, setUsername] = useState("");
@@ -23,6 +24,19 @@ function Signin() {
 			return;
 		} else {
 			// 로그인 API요청 보내기
+			signinRequest({
+				username: username,
+				password: password,
+			}).then((response) => {
+				if (response.data.status === "success") {
+					alert(response.data.message);
+					localStorage.setItem("accessToken", response.data.data);
+					navigate("/");
+				} else if (response.data.status === "failed") {
+					alert(response.data.message);
+					return;
+				}
+			});
 		}
 	};
 

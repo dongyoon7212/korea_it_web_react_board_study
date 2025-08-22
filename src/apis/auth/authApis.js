@@ -8,3 +8,12 @@ export const signupRequest = async (data) => {
 		return error.response;
 	}
 };
+
+export const signinRequest = async (data) => {
+	try {
+		const response = await instance.post("/auth/signin", data);
+		return response;
+	} catch (error) {
+		return error.response;
+	}
+};
