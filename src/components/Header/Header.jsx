@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { LuLogIn, LuUserRoundPlus } from "react-icons/lu";
+import { LuLogIn, LuLogOut, LuUserRoundPlus } from "react-icons/lu";
 import * as s from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { IoMdPerson } from "react-icons/io";
 
 function Header() {
 	const navigate = useNavigate();
@@ -11,6 +12,11 @@ function Header() {
 
 	const onClickNavHandler = (path) => {
 		navigate(path);
+	};
+
+	const onClickLogout = () => {
+		localStorage.removeItem("accessToken");
+		window.location.href = "/auth/signin";
 	};
 
 	return (
@@ -28,9 +34,14 @@ function Header() {
 			</div>
 			<div>
 				{principalData ? (
-					<>
-						<p>로그인 됨</p>
-					</>
+					<ul>
+						<li css={s.headerIcon}>
+							<IoMdPerson />
+						</li>
+						<li css={s.headerIcon} onClick={onClickLogout}>
+							<LuLogOut />
+						</li>
+					</ul>
 				) : (
 					<ul>
 						<li
