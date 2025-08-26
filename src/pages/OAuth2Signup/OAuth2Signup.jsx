@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import AuthInput from "../../components/AuthInput/AuthInput";
 import * as s from "./styles";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { oauth2SignupRequest } from "../../apis/auth/authApis";
 
 function OAuth2Signup() {
 	const [username, setUsername] = useState("");
@@ -11,6 +12,61 @@ function OAuth2Signup() {
 	const [email, setEmail] = useState("");
 	const [errorMessage, setErrorMessage] = useState({});
 	const [searchParam] = useSearchParams();
+	const navigate = useNavigate();
+
+	const signupOnClickHandler = () => {
+		if (
+			username.trim().length === 0 ||
+			password.trim().length === 0 ||
+			confirmPassword.trim().length === 0 ||
+			email.trim().length === 0
+		) {
+			alert("모든 항목을 입력해 주세요.");
+			return;
+		}
+
+		if (password !== confirmPassword) {
+			alert("비밀번호가 일치하지 않습니다.");
+			return;
+		}
+
+		//회원가입 요청 API
+		oauth2SignupRequest({
+			username: username,
+			password: password,
+			email: email,
+			provider: searchParam.get("provider"),
+			providerUserId: searchParam.get("providerUserId"),
+		})
+			.then((response) => {
+				console.log(response.data);
+				if (response.data.status === "success") {
+					alert(response.data.message);
+					navigate("/auth/signin");
+				} else if (response.data.status === "failed") {
+					alert(response.data.message);
+					return;
+				}
+			})
+			.catch((error) => {
+				alert("문제가 발생했습니다. 다시 시도해주세요.");
+				return;
+			});
+	};
+
+	useEffect(() => {
+		const newErrorMessage = {};
+		if (password.length > 0) {
+			const passwordRegex =
+				/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+			if (!passwordRegex.test(password)) {
+				newErrorMessage.password =
+					"비밀번호는 최소 8자에서 16자까지, 영문자, 숫자 및 특수 문자를 포함해야 합니다.";
+			}
+		}
+
+		setErrorMessage(newErrorMessage);
+	}, [password]);
 
 	useEffect(() => {
 		setEmail(searchParam.get("email"));
@@ -44,7 +100,20 @@ function OAuth2Signup() {
 						placeholder={"이메일"}
 						state={email}
 						setState={setEmail}
+						disabled={true}
 					/>
+				</div>
+				<div css={s.errorBox}>
+					{Object.keys(errorMessage).length !== 0 ? (
+						<ul>
+							<li>{errorMessage.password}</li>
+						</ul>
+					) : (
+						<></>
+					)}
+				</div>
+				<div css={s.btnBox}>
+					<button onClick={signupOnClickHandler}>가입하기</button>
 				</div>
 			</div>
 		</div>
