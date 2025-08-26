@@ -45,3 +45,12 @@ export const oauth2SignupRequest = async (data) => {
 		return error.response;
 	}
 };
+
+export const oauth2MergeRequest = async (data) => {
+	try {
+		const response = await instance.post("/oauth2/merge", data);
+		return response;
+	} catch (error) {
+		return error.response;
+	}
+};
