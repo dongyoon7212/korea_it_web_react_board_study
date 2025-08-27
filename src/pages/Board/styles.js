@@ -34,3 +34,30 @@ export const listContainer = css`
 		}
 	}
 `;
+
+export const paginateContainer = css`
+	width: 100%;
+	padding: 30px 10px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	& > ul {
+		width: 60%;
+		display: flex;
+		justify-content: space-between;
+
+		& > li {
+			padding: 8px;
+			box-sizing: border-box;
+			cursor: pointer;
+			color: #333;
+			transition: all 0.2s ease;
+		}
+
+		& > li:hover {
+			transform: translateY(-2px);
+		}
+	}
+`;

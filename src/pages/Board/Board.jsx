@@ -2,10 +2,15 @@
 import { useEffect, useState } from "react";
 import * as s from "./styles";
 import { getBoardList } from "../../apis/board/boardApis";
+import ReactPaginate from "react-paginate";
 
 function Board() {
 	const [boardList, setBoardList] = useState([]);
 	const [message, setMessage] = useState("");
+	const [currentBoardList, setCurrentBoardList] = useState([]);
+	const [currentPage, setCurrentPage] = useState(0);
+
+	const amountBoard = 15;
 
 	useEffect(() => {
 		getBoardList().then((response) => {
@@ -17,6 +22,17 @@ function Board() {
 			}
 		});
 	}, []);
+
+	useEffect(() => {
+		const offset = currentPage * amountBoard;
+		const slicedBoard = boardList.slice(offset, offset + amountBoard);
+		setCurrentBoardList(slicedBoard);
+	}, [currentPage, boardList]);
+
+	const pageOnChangeHandler = (event) => {
+		setCurrentPage(event.selected);
+	};
+
 	return (
 		<div css={s.container}>
 			<div css={s.listContainer}>
@@ -24,13 +40,15 @@ function Board() {
 					<p>{message}</p>
 				) : (
 					<ul>
-						{boardList.map((board, index) => {
+						{currentBoardList.map((board, index) => {
 							const date = board.createDt;
 							const formattedDate = date.split("T")[0];
+							const boardNumber =
+								currentPage * amountBoard + index + 1;
 							return (
 								<li key={board.boardId}>
 									<div>
-										<span>{index + 1}</span>
+										<span>{boardNumber}</span>
 										<strong>{board.title}</strong>
 									</div>
 									<span>{formattedDate}</span>
@@ -40,7 +58,14 @@ function Board() {
 					</ul>
 				)}
 			</div>
-			<div>{/* 페이지네이션 */}</div>
+			<div css={s.paginateContainer}>
+				<ReactPaginate
+					pageCount={Math.ceil(boardList.length / amountBoard)}
+					onPageChange={pageOnChangeHandler}
+					previousLabel="이전"
+					nextLabel="다음"
+				/>
+			</div>
 		</div>
 	);
 }
