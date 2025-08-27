@@ -10,7 +10,14 @@ function MainRouter() {
 		<>
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/board" element={<Board />} />
+				<Route
+					path="/board"
+					element={
+						<ProtectedRoute>
+							<Board />
+						</ProtectedRoute>
+					}
+				/>
 				<Route
 					path="/write"
 					element={
