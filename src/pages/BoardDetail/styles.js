@@ -54,11 +54,17 @@ export const btnContainer = css`
 	}
 `;
 
-export const btn = css`
+export const btn = (color) => css`
 	border: none;
 	padding: 8px 14px;
 	box-sizing: border-box;
 	border-radius: 8px;
 	font-size: 15px;
 	cursor: pointer;
+	background-color: ${color};
+	color: white;
+
+	&:hover {
+		opacity: 0.85;
+	}
 `;
