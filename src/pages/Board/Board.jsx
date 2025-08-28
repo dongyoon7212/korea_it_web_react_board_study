@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import * as s from "./styles";
 import { getBoardList } from "../../apis/board/boardApis";
 import ReactPaginate from "react-paginate";
+import { useNavigate } from "react-router-dom";
 
 function Board() {
 	const [boardList, setBoardList] = useState([]);
 	const [message, setMessage] = useState("");
 	const [currentBoardList, setCurrentBoardList] = useState([]);
 	const [currentPage, setCurrentPage] = useState(0);
+	const navigate = useNavigate();
 
 	const amountBoard = 15;
 
@@ -46,7 +48,12 @@ function Board() {
 							const boardNumber =
 								currentPage * amountBoard + index + 1;
 							return (
-								<li key={board.boardId}>
+								<li
+									key={board.boardId}
+									onClick={() => {
+										navigate(`/board/${board.boardId}`);
+									}}
+								>
 									<div>
 										<span>{boardNumber}</span>
 										<strong>{board.title}</strong>
