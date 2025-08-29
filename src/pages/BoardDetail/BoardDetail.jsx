@@ -63,7 +63,12 @@ function BoardDetail() {
 						>
 							삭제
 						</button>
-						<button css={s.btn("#0d6efd")}>수정</button>
+						<button
+							css={s.btn("#0d6efd")}
+							onClick={() => navigate(`/board/update/${boardId}`)}
+						>
+							수정
+						</button>
 					</div>
 				) : (
 					<></>
