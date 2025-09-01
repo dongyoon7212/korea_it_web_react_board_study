@@ -3,15 +3,25 @@ import * as s from "./styles";
 import profileImg from "../../assets/profileImg.jpg";
 import MyBoard from "../../components/MyBoard/MyBoard";
 import ChangePassword from "../../components/ChangePassword/ChangePassword";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Profile() {
+	const [tab, setTab] = useState("myboard");
+	const [tabChild, setTabChild] = useState(1);
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
-	
+	const [searchParams] = useSearchParams();
+
 	const tabClickHandler = (path) => {
+		setTabChild(path === "myboard" ? 1 : 2);
 		navigate(`${pathname}?tab=${path}`);
 	};
+
+	useEffect(() => {
+		setTab(searchParams.get("tab"));
+	}, [pathname, searchParams]);
+
 	return (
 		<div css={s.container}>
 			<div css={s.profileContainer}>
@@ -30,15 +40,26 @@ function Profile() {
 					</div>
 				</div>
 				<div css={s.profileBox}>
-					<div css={s.profileTab}>
+					<div css={s.profileTab(tabChild)}>
 						<ul>
-							<li>내 게시물</li>
-							<li>비밀번호 변경</li>
+							<li onClick={() => tabClickHandler("myboard")}>
+								내 게시물
+							</li>
+							<li
+								onClick={() =>
+									tabClickHandler("changepassword")
+								}
+							>
+								비밀번호 변경
+							</li>
 						</ul>
 					</div>
 					<div css={s.profileMain}>
-						{/* <MyBoard /> */}
-						<ChangePassword />
+						{tab === "myboard" || tab === null ? (
+							<MyBoard />
+						) : (
+							<ChangePassword />
+						)}
 					</div>
 				</div>
 			</div>

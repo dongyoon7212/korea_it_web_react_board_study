@@ -85,7 +85,7 @@ export const profileBox = css`
 	box-sizing: border-box;
 `;
 
-export const profileTab = css`
+export const profileTab = (tabChild) => css`
 	width: 100%;
 	height: 40px;
 	border-bottom: 1px solid #dbdbdb;
@@ -105,6 +105,10 @@ export const profileTab = css`
 			box-sizing: border-box;
 			color: #333;
 			cursor: pointer;
+
+			&:nth-child(${tabChild}) {
+				border-bottom: 1px solid white;
+			}
 
 			&:hover {
 				background-color: #f2f2f2;
