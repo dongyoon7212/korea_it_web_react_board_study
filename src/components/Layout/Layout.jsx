@@ -17,12 +17,10 @@ function Layout({ children }) {
 	});
 
 	useEffect(() => {
-		login(data?.data.data);
+		if (data?.data.status === "success") {
+			login(data?.data.data);
+		}
 	}, [data, login]);
-
-	useEffect(() => {
-		console.log(isLoggedIn, principal);
-	}, [isLoggedIn, principal]);
 
 	return (
 		<div css={s.layout}>
