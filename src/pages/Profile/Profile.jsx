@@ -1,8 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./styles";
 import profileImg from "../../assets/profileImg.jpg";
+import MyBoard from "../../components/MyBoard/MyBoard";
+import ChangePassword from "../../components/ChangePassword/ChangePassword";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Profile() {
+	const navigate = useNavigate();
+	const { pathname } = useLocation();
+	
+	const tabClickHandler = (path) => {
+		navigate(`${pathname}?tab=${path}`);
+	};
 	return (
 		<div css={s.container}>
 			<div css={s.profileContainer}>
@@ -20,7 +29,18 @@ function Profile() {
 						</div>
 					</div>
 				</div>
-				<div css={s.profileMain}></div>
+				<div css={s.profileBox}>
+					<div css={s.profileTab}>
+						<ul>
+							<li>내 게시물</li>
+							<li>비밀번호 변경</li>
+						</ul>
+					</div>
+					<div css={s.profileMain}>
+						{/* <MyBoard /> */}
+						<ChangePassword />
+					</div>
+				</div>
 			</div>
 		</div>
 	);
