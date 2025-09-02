@@ -22,6 +22,12 @@ function Profile() {
 
 	useEffect(() => {
 		setTab(searchParams.get("tab"));
+		setTabChild(
+			searchParams.get("tab") === "myboard" ||
+				searchParams.get("tab") === null
+				? 1
+				: 2
+		);
 	}, [pathname, searchParams]);
 
 	return (
@@ -63,7 +69,7 @@ function Profile() {
 					</div>
 					<div css={s.profileMain}>
 						{tab === "myboard" || tab === null ? (
-							<MyBoard />
+							<MyBoard userId={principal?.userId} />
 						) : (
 							<ChangePassword />
 						)}
