@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 import { changeProfileImg } from "../../apis/account/accountApis";
 
 function ChangeProfileImg({ oldProfileImg, userId }) {
-	const [profileImg, setProfileImg] = useState("");
+	const [profileImg, setProfileImg] = useState(null);
 	const [newProfileImg, setNewProfileImg] = useState(null);
 	const [isUploading, setIsUploading] = useState(false);
 	const [progress, setProgress] = useState(0);
@@ -103,7 +103,7 @@ function ChangeProfileImg({ oldProfileImg, userId }) {
 			<div css={s.profileImgBox}>
 				<img
 					src={profileImg}
-					alt=""
+					alt="profileImage"
 					onClick={onClickProfileImgHandler}
 				/>
 				<input

@@ -18,10 +18,6 @@ function Header() {
 		logout();
 	};
 
-	useEffect(() => {
-		console.log(isLoggedIn, principal);
-	}, [isLoggedIn, principal]);
-
 	return (
 		<div css={s.header}>
 			<div onClick={() => onClickNavHandler("/")}>BOARD</div>
