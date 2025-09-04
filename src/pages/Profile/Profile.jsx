@@ -102,7 +102,8 @@ function Profile() {
 							<ChangePassword />
 						) : (
 							<ChangeProfileImg
-								oldProfileImg={principal.profileImg}
+								oldProfileImg={principal?.profileImg}
+								userId={principal?.userId}
 							/>
 						)}
 					</div>
